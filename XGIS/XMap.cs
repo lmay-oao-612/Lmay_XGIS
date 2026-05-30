@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -18,10 +18,10 @@ namespace XGIS
         public XExploreActions CurrentMouseAction { get; set; } = XExploreActions.noaction;
         public XMouseTool CurrentMouseTool { get; set; } = XMouseTool.none;
 
-        private Point MouseDownLocation, MouseMovingLocation;
-        private List<XVertex> tempDrawingVertices = new List<XVertex>();
+        public Point MouseDownLocation, MouseMovingLocation;
+        public List<XVertex> tempDrawingVertices = new List<XVertex>();
         public string CurrentDrawingSubType { get; set; } = "";
-        private XVertex firstVertex = null;
+        public XVertex firstVertex = null;
         private int measureCount = 0;
 
         public XVectorLayer CurrentDrawingLayer { get; set; }
@@ -38,6 +38,7 @@ namespace XGIS
         {
             InitializeComponent();
             InitializeView();
+            pnlInfo.Visible = false;
 
             this.MouseWheel += Form1_MouseWheel;
             this.MouseEnter += (s, e) => this.Focus();
@@ -58,20 +59,21 @@ namespace XGIS
         /// <summary>
         /// 清楚选择状态
         /// </summary>
-        private void ClearSelection()
+        public void ClearSelection()
         {
             if (HighlightedFeature != null)
             {
                 HighlightedFeature = null;
             }
             Document.ClearSelection();
+            ClearIdentifyUI?.Invoke();
             UpdateMap();
         }
 
         /// <summary>
         /// 更新地图显示
         /// </summary>
-        private void UpdateMap()
+        public void UpdateMap()
         {
             if (ClientRectangle.Width * ClientRectangle.Height == 0) return;
             if (View == null) return; // 防御性检查

@@ -1,4 +1,4 @@
-﻿namespace XGIS
+namespace XGIS
 {
     partial class Form1
     {
@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点0");
+            this.xMap1 = new XGIS.XMap();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.tSBfile = new System.Windows.Forms.ToolStripDropDownButton();
             this.mNewXDoc = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,18 +62,26 @@
             this.tSelect = new System.Windows.Forms.ToolStripMenuItem();
             this.TUnselect = new System.Windows.Forms.ToolStripMenuItem();
             this.重命名ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pnlInfo = new System.Windows.Forms.Panel();
-            this.dgvAttributes = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.SCurrentMode = new System.Windows.Forms.ToolStripStatusLabel();
             this.SShowMode = new System.Windows.Forms.ToolStripStatusLabel();
             this.tvLayer = new System.Windows.Forms.TreeView();
             this.toolStrip.SuspendLayout();
             this.layerMenu.SuspendLayout();
-            this.pnlInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAttributes)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // xMap1
+            // 
+            this.xMap1.CurrentDrawingLayer = null;
+            this.xMap1.CurrentDrawingSubType = "";
+            this.xMap1.CurrentMouseAction = XExploreActions.noaction;
+            this.xMap1.CurrentMouseTool = XMouseTool.none;
+            this.xMap1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xMap1.Location = new System.Drawing.Point(178, 27);
+            this.xMap1.Name = "xMap1";
+            this.xMap1.Size = new System.Drawing.Size(881, 517);
+            this.xMap1.TabIndex = 16;
             // 
             // toolStrip
             // 
@@ -324,28 +333,6 @@
             this.重命名ToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.重命名ToolStripMenuItem.Text = "重命名";
             // 
-            // pnlInfo
-            // 
-            this.pnlInfo.BackColor = System.Drawing.SystemColors.Info;
-            this.pnlInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlInfo.Controls.Add(this.dgvAttributes);
-            this.pnlInfo.Location = new System.Drawing.Point(654, 387);
-            this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(401, 152);
-            this.pnlInfo.TabIndex = 13;
-            this.pnlInfo.Visible = false;
-            // 
-            // dgvAttributes
-            // 
-            this.dgvAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAttributes.Location = new System.Drawing.Point(0, 0);
-            this.dgvAttributes.Name = "dgvAttributes";
-            this.dgvAttributes.RowHeadersWidth = 51;
-            this.dgvAttributes.RowTemplate.Height = 27;
-            this.dgvAttributes.Size = new System.Drawing.Size(399, 150);
-            this.dgvAttributes.TabIndex = 0;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -393,22 +380,14 @@
             this.ClientSize = new System.Drawing.Size(1059, 570);
             this.Controls.Add(this.tvLayer);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.pnlInfo);
+            this.Controls.Add(this.xMap1);
             this.Controls.Add(this.toolStrip);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.layerMenu.ResumeLayout(false);
-            this.pnlInfo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAttributes)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -429,8 +408,6 @@
         private System.Windows.Forms.ContextMenuStrip layerMenu;
         private System.Windows.Forms.ToolStripMenuItem TshowAttribute;
         private System.Windows.Forms.ToolStripMenuItem TremoveLayer;
-        private System.Windows.Forms.Panel pnlInfo;
-        private System.Windows.Forms.DataGridView dgvAttributes;
         private System.Windows.Forms.ToolStripMenuItem TmoveUp;
         private System.Windows.Forms.ToolStripMenuItem TmoveDown;
         private System.Windows.Forms.ToolStripMenuItem TCLear;
@@ -445,6 +422,7 @@
         private System.Windows.Forms.ToolStripMenuItem mOpenXDoc;
         private System.Windows.Forms.ToolStripMenuItem mSaveXDoc;
         private System.Windows.Forms.TreeView tvLayer;
+        private XGIS.XMap xMap1;
         private System.Windows.Forms.ToolStripDropDownButton tTest;
         private System.Windows.Forms.ToolStripMenuItem tVerifyAreaAlgorithm;
         private System.Windows.Forms.ToolStripMenuItem tRunPerformance;
